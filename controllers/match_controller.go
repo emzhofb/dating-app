@@ -12,7 +12,7 @@ import (
 func GetAllMatchByUserController(c echo.Context) error {
 	userId := middleware.GetUserIdFromJWT(c)
 	var matchesDB []models.Matches
-	result := configs.DB.Where("user_id_a != ?", userId).Find(&matchesDB)
+	result := configs.DB.Where("user_id_a = ?", userId).Or("user_id_b = ?", userId).Find(&matchesDB)
 
 	if result.Error != nil {
 		return c.JSON(http.StatusInternalServerError, BaseResponse(
