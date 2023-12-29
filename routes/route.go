@@ -29,6 +29,13 @@ func New() *echo.Echo {
 	e.POST("/user/login", controllers.LoginUserController)
 
 	eAuth.POST("/user/update", controllers.UpdateUserController)
+	eAuth.GET("/user/premium", controllers.UpdateUserPremiumController)
+
+	eAuth.GET("/users", controllers.GetAllUserController)
+	eAuth.POST("/user/like", controllers.LikeController)
+	eAuth.POST("/user/dislike", controllers.DisLikeController)
+
+	eAuth.GET("/user/match", controllers.GetAllMatchByUserController)
 
 	return e
 }

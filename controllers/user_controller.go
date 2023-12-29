@@ -4,6 +4,7 @@ import (
 	"dating-app/configs"
 	"dating-app/middleware"
 	"dating-app/models"
+	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -69,7 +70,7 @@ func LoginUserController(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, BaseResponse(
 			http.StatusInternalServerError,
-			"Failed Login Customer",
+			"Failed Login User",
 			err.Error(),
 		))
 	}
@@ -82,7 +83,7 @@ func LoginUserController(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, BaseResponse(
 		http.StatusOK,
-		"Success Login Customer",
+		"Success Login User",
 		userResponse,
 	))
 }
@@ -112,10 +113,72 @@ func UpdateUserController(c echo.Context) error {
 		))
 	}
 
-	userDB.Password = ""
 	return c.JSON(http.StatusOK, BaseResponse(
 		http.StatusOK,
 		"Success Update Data User",
 		userDB,
 	))
+}
+
+func UpdateUserPremiumController(c echo.Context) error {
+	userId := middleware.GetUserIdFromJWT(c)
+
+	var userDB models.User
+	configs.DB.First(&userDB, "user_id", userId)
+	userDB.Profile.Limit = -1
+	userDB.Profile.IsPremium = true
+
+	err := configs.DB.Save(&userDB).Error
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, BaseResponse(
+			http.StatusInternalServerError,
+			"Failed Update Data",
+			err.Error(),
+		))
+	}
+
+	return c.JSON(http.StatusOK, BaseResponse(
+		http.StatusOK,
+		"Success Update Data User Premium",
+		userDB,
+	))
+}
+
+func GetAllUserController(c echo.Context) error {
+	userId := middleware.GetUserIdFromJWT(c)
+
+	var userDB []models.User
+	result := configs.DB.Where("user_id != ?", userId).Find(&userDB)
+	if result.Error != nil {
+		return c.JSON(http.StatusInternalServerError, BaseResponse(
+			http.StatusInternalServerError,
+			"Failed Get Data",
+			result.Error.Error(),
+		))
+	}
+
+	return c.JSON(http.StatusOK, BaseResponse(
+		http.StatusOK,
+		"Success Get List Users",
+		userDB,
+	))
+}
+
+func ResetUserLimits() {
+	var userDB []models.User
+	result := configs.DB.Where("is_premium != ?", false).Find(&userDB)
+
+	if result.Error != nil {
+		fmt.Println("failed get data from cron")
+	}
+
+	for _, v := range userDB {
+		v.Profile.Limit = 10
+		err := configs.DB.Save(v).Error
+
+		if err != nil {
+			fmt.Println("failed update user limit")
+		}
+	}
 }
