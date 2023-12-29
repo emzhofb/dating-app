@@ -1,0 +1,432 @@
+{
+	"info": {
+		"_postman_id": "a21f5c2f-0094-4da5-b50c-86b68b7fc838",
+		"name": "dating-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7171850"
+	},
+	"item": [
+		{
+			"name": "register user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code test",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"// JSON response property test",
+							"pm.test(\"Response body has property 'name'\", function () {",
+							"    pm.response.to.have.jsonBody('code');",
+							"});",
+							"",
+							"// JSON response value test",
+							"pm.test(\"Response body 'message' is 'success'\", function () {",
+							"    pm.expect(pm.response.json().message).to.equal('Success Register User');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"password\": \"password123\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/register",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code test",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// JSON response property test",
+							"pm.test(\"Response body has property 'name'\", function () {",
+							"    pm.response.to.have.jsonBody('code');",
+							"});",
+							"",
+							"// JSON response value test",
+							"pm.test(\"Response body 'message' is 'success'\", function () {",
+							"    pm.expect(pm.response.json().message).to.equal('Success Login User');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"john.doe@gmail.com\",\n    \"password\": \"password123\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/login",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update profile",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code test",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// JSON response property test",
+							"pm.test(\"Response body has property 'name'\", function () {",
+							"    pm.response.to.have.jsonBody('code');",
+							"});",
+							"",
+							"// JSON response value test",
+							"pm.test(\"Response body 'message' is 'success'\", function () {",
+							"    pm.expect(pm.response.json().message).to.equal('Success Update Data User');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Doe\",\n    \"age\": 25,\n    \"gender\": \"male\",\n    \"bio\": \"Looking for someone who want to be with me\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/update",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "enable premium user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code test",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// JSON response property test",
+							"pm.test(\"Response body has property 'name'\", function () {",
+							"    pm.response.to.have.jsonBody('code');",
+							"});",
+							"",
+							"// JSON response value test",
+							"pm.test(\"Response body 'message' is 'success'\", function () {",
+							"    pm.expect(pm.response.json().message).to.equal('Success Update Data User Premium');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/user/premium",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"premium"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code test",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// JSON response property test",
+							"pm.test(\"Response body has property 'name'\", function () {",
+							"    pm.response.to.have.jsonBody('code');",
+							"});",
+							"",
+							"// JSON response value test",
+							"pm.test(\"Response body 'message' is 'success'\", function () {",
+							"    pm.expect(pm.response.json().message).to.equal('Success Get List Users');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/users",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get all users matches",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code test",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// JSON response property test",
+							"pm.test(\"Response body has property 'name'\", function () {",
+							"    pm.response.to.have.jsonBody('code');",
+							"});",
+							"",
+							"// JSON response value test",
+							"pm.test(\"Response body 'message' is 'success'\", function () {",
+							"    pm.expect(pm.response.json().message).to.equal('Success Get List Matches');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/user/match",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"match"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "like user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code test",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// JSON response property test",
+							"pm.test(\"Response body has property 'name'\", function () {",
+							"    pm.response.to.have.jsonBody('code');",
+							"});",
+							"",
+							"// JSON response value test",
+							"pm.test(\"Response body 'message' is 'success'\", function () {",
+							"    pm.expect(pm.response.json().message).to.equal('Success Save Like');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id_to\": 31\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/like",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"like"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "dislike user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Status code test",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"// JSON response property test",
+							"pm.test(\"Response body has property 'name'\", function () {",
+							"    pm.response.to.have.jsonBody('code');",
+							"});",
+							"",
+							"// JSON response value test",
+							"pm.test(\"Response body 'message' is 'success'\", function () {",
+							"    pm.expect(pm.response.json().message).to.equal('Success Save UnLike');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id_to\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/user/dislike",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"user",
+						"dislike"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjdXN0b21lcklkIjozMSwiZXhwIjoxNzAzODMyMjEwfQ.AdqTk1z_H4LFWWimyM-YaDoJSJo4IS78JdXIJoyvWHU",
+			"type": "string"
+		}
+	]
+}
