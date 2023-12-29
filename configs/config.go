@@ -49,4 +49,6 @@ func InitDB() {
 
 func Migration() {
 	DB.AutoMigrate(&models.User{})
+	DB.AutoMigrate(&models.Likes{})
+	DB.AutoMigrate(&models.Matches{})
 }
