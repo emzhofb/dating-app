@@ -108,7 +108,7 @@ func DisLikeController(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, BaseResponse(
 		http.StatusOK,
-		"Success Save UnLike",
+		"Success Save DisLike",
 		"user dislike person",
 	))
 }
