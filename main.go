@@ -24,7 +24,6 @@ func main() {
 
 	if err != nil {
 		fmt.Println("Error scheduling cron job:", err)
-		return
 	}
 
 	c.Start()
