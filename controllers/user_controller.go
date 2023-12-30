@@ -167,7 +167,7 @@ func GetAllUserController(c echo.Context) error {
 
 func ResetUserLimits() {
 	var userDB []models.User
-	result := configs.DB.Where("is_premium != ?", false).Find(&userDB)
+	result := configs.DB.Where("is_premium != ?", true).Find(&userDB)
 
 	if result.Error != nil {
 		fmt.Println("failed get data from cron")
